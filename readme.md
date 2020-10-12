@@ -1,4 +1,5 @@
 # Leeloo LXP Upcoming Courses Block
+This moodle block shows all the Upcoming courses for a user. Upcoming means the courses user progress is 0%.
 
 Installation Instructions
 =========================
