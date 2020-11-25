@@ -15,28 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * tb_up_courses block settings
+ * Moodle Get settings from L
  *
- * @package   block_tb_up_courses
+ * @package    block_tb_up_courses
  * @copyright  2020 Leeloo LXP (https://leeloolxp.com)
  * @author     Leeloo LXP <info@leeloolxp.com>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die;
 
-if ($ADMIN->fulltree) {
+require('../../config.php');
 
-    require_once($CFG->dirroot . '/blocks/tb_up_courses/lib.php');
-
-    $setting = new admin_setting_configtext(
-        'block_tb_up_courses/license',
-        get_string('license', 'block_tb_up_courses'),
-        get_string('license', 'block_tb_up_courses'),
-        0
-    );
-    $setting->set_updatedcallback(updateconfup_courses());
-    $settings->add($setting);
-
-    $setting = new admin_setting_configup_courses('block_tb_up_courses/settingsjson', '', '', '', PARAM_RAW);
-    $settings->add($setting);
-}
+require_once($CFG->libdir . '/filelib.php');
+require_once($CFG->dirroot . '/blocks/tb_up_courses/locallib.php');
+updateconfup_courses();
