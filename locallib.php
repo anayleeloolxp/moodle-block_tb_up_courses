@@ -199,7 +199,7 @@ function block_tb_up_courses_get_max_user_courses($showallcourses = false) {
     $resposedata = json_decode($output);
     $settingleeloolxp = $resposedata->data->upcoming_courses;
 
-    $limit = $settingleeloolxp->upcoming_defaultmaxcourses;
+    $limit = @$settingleeloolxp->upcoming_defaultmaxcourses;
 
     // If max course is not set then try get user preference.
     if (empty($settingleeloolxp->upcoming_forcedefaultmaxcourses)) {
