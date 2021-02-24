@@ -44,18 +44,17 @@ class block_tb_up_courses_renderer extends plugin_renderer_base {
         $html = '';
         // LearningWorks.
 
-        if($config->upcoming_showasslider == 1){
+        if ($config->upcoming_showasslider == 1) {
             $this->page->requires->js(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/js/jquery.min.js'));
             $this->page->requires->js(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/js/owl.carousel.js'));
-            if($config->upcoming_autoslide == 1){
+            if ($config->upcoming_autoslide == 1) {
                 $this->page->requires->js(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/js/owlslider-auto.js'));
-            }else{
+            } else {
                 $this->page->requires->js(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/js/owlslider.js'));
             }
 
             $this->page->requires->css(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/css/owl.carousel.min.css'));
             $this->page->requires->css(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/css/owl.theme.default.min.css'));
-
         }
 
         $this->page->requires->js(new moodle_url($CFG->wwwroot . '/blocks/tb_up_courses/js/custom.js'));
@@ -122,11 +121,11 @@ class block_tb_up_courses_renderer extends plugin_renderer_base {
             $startvalue = 12;
             $courseclass = "list";
         } else {
-            if($config->upcoming_showasslider == 1){    
+            if ($config->upcoming_showasslider == 1) {
                 $html .= '';
-            }else{
+            } else {
                 $html .= html_writer::tag('a', 'Change View', array('href' => '#', 'id' => 'box-or-lines',
-                'styles' => '', 'class' => "$courseclass col-md-$startvalue span$startvalue $courseclass"));
+                    'styles' => '', 'class' => "$courseclass col-md-$startvalue span$startvalue $courseclass"));
             }
         }
         $html .= html_writer::tag('div', '', array("class" => "hidden startgrid $courseclass", "grid-size" => $gridsplit));
@@ -139,17 +138,17 @@ class block_tb_up_courses_renderer extends plugin_renderer_base {
             'u.lang, u.timezone, u.lastaccess, u.mnethostid, u.imagealt, r.name AS rolename, r.sortorder, ' .
             'r.shortname AS roleshortname, rn.name AS rolecoursealias';
 
-        if($config->upcoming_style == 0){
+        if ($config->upcoming_style == 0) {
             $colorstyle = 'style_light';
-        }else{
+        } else {
             $colorstyle = 'style_dark';
         }
 
-        if($config->upcoming_showasslider == 1){    
-            $html .= html_writer::start_div('tb_up_courses_list owl-carousel owl-theme '.$colorstyle);
-        }else{
-            $html .= html_writer::start_div('tb_up_courses_list '.$colorstyle);
-        }  
+        if ($config->upcoming_showasslider == 1) {
+            $html .= html_writer::start_div('tb_up_courses_list owl-carousel owl-theme ' . $colorstyle);
+        } else {
+            $html .= html_writer::start_div('tb_up_courses_list ' . $colorstyle);
+        }
         foreach ($courses as $key => $course) {
             $percent = block_tb_up_courses_progress_percent($course);
 

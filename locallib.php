@@ -158,14 +158,16 @@ function block_tb_up_courses_get_max_user_courses($showallcourses = false) {
     $leeloolxplicense = get_config('block_tb_up_courses')->license;
 
     $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
-    $postdata = '&license_key=' . $leeloolxplicense;
+    $postdata = [
+        'license_key' => $leeloolxplicense,
+    ];
 
     $curl = new curl;
 
     $options = array(
         'CURLOPT_RETURNTRANSFER' => true,
         'CURLOPT_HEADER' => false,
-        'CURLOPT_POST' => 1,
+        'CURLOPT_POST' => count($postdata),
     );
 
     if (!$output = $curl->post($url, $postdata, $options)) {
@@ -182,14 +184,16 @@ function block_tb_up_courses_get_max_user_courses($showallcourses = false) {
 
     $url = $leeloolxpurl . '/admin/Theme_setup/get_upcoming_courses';
 
-    $postdata = '&license_key=' . $leeloolxplicense;
+    $postdata = [
+        'license_key' => $leeloolxplicense,
+    ];
 
     $curl = new curl;
 
     $options = array(
         'CURLOPT_RETURNTRANSFER' => true,
         'CURLOPT_HEADER' => false,
-        'CURLOPT_POST' => 1,
+        'CURLOPT_POST' => count($postdata),
     );
 
     if (!$output = $curl->post($url, $postdata, $options)) {
@@ -355,36 +359,44 @@ function block_tb_up_courses_progress_percent($course) {
 /**
  * Fetch and Update Configration From L
  */
-function updateconfup_courses(){
-    $leeloolxplicense = get_config('block_tb_up_courses')->license;
-    
+function updateconfup_courses() {
+    if (isset(get_config('block_tb_up_courses')->license)) {
+        $leeloolxplicense = get_config('block_tb_up_courses')->license;
+    } else {
+        return;
+    }
+
     $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
-    $postdata = '&license_key=' . $leeloolxplicense;
+    $postdata = [
+        'license_key' => $leeloolxplicense,
+    ];
     $curl = new curl;
     $options = array(
         'CURLOPT_RETURNTRANSFER' => true,
         'CURLOPT_HEADER' => false,
-        'CURLOPT_POST' => 1,
+        'CURLOPT_POST' => count($postdata),
     );
     if (!$output = $curl->post($url, $postdata, $options)) {
-        
+        $falsevar = 0;
     }
     $infoleeloolxp = json_decode($output);
     if ($infoleeloolxp->status != 'false') {
         $leeloolxpurl = $infoleeloolxp->data->install_url;
     } else {
-        
+        $falsevar = 0;
     }
     $url = $leeloolxpurl . '/admin/Theme_setup/get_upcoming_courses';
-    $postdata = '&license_key=' . $leeloolxplicense;
+    $postdata = [
+        'license_key' => $leeloolxplicense,
+    ];
     $curl = new curl;
     $options = array(
         'CURLOPT_RETURNTRANSFER' => true,
         'CURLOPT_HEADER' => false,
-        'CURLOPT_POST' => 1,
+        'CURLOPT_POST' => count($postdata),
     );
     if (!$output = $curl->post($url, $postdata, $options)) {
-        
+        $falsevar = 0;
     }
     set_config('settingsjson', base64_encode($output), 'block_tb_up_courses');
 }

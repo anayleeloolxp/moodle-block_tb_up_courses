@@ -139,7 +139,7 @@ class block_tb_up_courses extends block_base {
     public function applicable_formats() {
         return array('all' => true);
     }
-    
+
     /**
      * Get settings from Leeloo
      */
