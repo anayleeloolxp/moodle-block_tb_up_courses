@@ -317,7 +317,7 @@ function block_tb_up_courses_build_progress($course, $config) {
     require_once($CFG->dirroot . '/grade/lib.php');
     $completestring = get_string('complete');
 
-    if ($config->upcoming_progressenabled == BLOCKS_TB_UP_COURSES_SHOWGRADES_NO) {
+    if (@$config->upcoming_progressenabled == BLOCKS_TB_UP_COURSES_SHOWGRADES_NO) {
         return '';
     }
 
