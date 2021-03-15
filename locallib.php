@@ -377,13 +377,13 @@ function updateconfup_courses() {
         'CURLOPT_POST' => count($postdata),
     );
     if (!$output = $curl->post($url, $postdata, $options)) {
-        $falsevar = 0;
+        return;
     }
     $infoleeloolxp = json_decode($output);
     if ($infoleeloolxp->status != 'false') {
         $leeloolxpurl = $infoleeloolxp->data->install_url;
     } else {
-        $falsevar = 0;
+        return;
     }
     $url = $leeloolxpurl . '/admin/Theme_setup/get_upcoming_courses';
     $postdata = [
@@ -396,7 +396,7 @@ function updateconfup_courses() {
         'CURLOPT_POST' => count($postdata),
     );
     if (!$output = $curl->post($url, $postdata, $options)) {
-        $falsevar = 0;
+        return;
     }
     set_config('settingsjson', base64_encode($output), 'block_tb_up_courses');
 }
