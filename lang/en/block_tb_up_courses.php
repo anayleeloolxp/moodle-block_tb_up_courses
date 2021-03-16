@@ -109,7 +109,7 @@ $string['nocompletion'] = "Completion not enabled";
 
 $string['privacy:metadata'] = 'The Leeloo LXP Upcoming Courses (tb_up_courses) block only shows information about courses and does not store data itself.';
 
-$string['blocktitle'] = 'Block Title';
+$string['blocktitle'] = 'Leeloo LXP UpComing Courses';
 $string['categoryid'] = 'Category Id';
 
 $string['nolicense'] = 'Invalid Leeloo LXP License ID';
